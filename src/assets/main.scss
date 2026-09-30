@@ -3,8 +3,8 @@
 // felix.light/felix.dark each compose the upstream base theme themselves, so
 // the FKUI base needs no separate load here (and @fkui/theme-default must
 // never be @use'd with configuration by the consumer – felix loads it).
-@use "felix-ds/src/fonts/fonts";
-@use "felix-ds/src/theme/default" as felix with (
+@use "@pattespatte/felix-ds/src/fonts/fonts";
+@use "@pattespatte/felix-ds/src/theme/default" as felix with (
     $global: false
 );
 
