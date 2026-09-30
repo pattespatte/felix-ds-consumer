@@ -1,11 +1,97 @@
 <script setup lang="ts">
-// App shell arrives with the representative page set; the scaffold proves the
-// felix-ds consumption contract (entry imports + mixin pair) builds.
+import { routes } from "./router";
+import { currentColorMode, toggleColorMode } from "./color-mode";
+import SiteFooter from "./components/SiteFooter.vue";
 </script>
 
 <template>
-    <main class="app">
-        <h1>felix-ds-konsument</h1>
-        <p>Scaffolding på plats – temat är kopplat.</p>
-    </main>
+    <div class="app-shell">
+        <header class="app-header">
+            <a class="app-header__home" href="#/">felix-ds-konsument</a>
+            <nav aria-label="Huvudnavigation" class="app-header__nav">
+                <router-link
+                    v-for="route in routes"
+                    :key="route.name"
+                    class="app-header__link"
+                    :to="{ name: route.name }"
+                >
+                    {{ route.meta.title }}
+                </router-link>
+            </nav>
+            <button
+                type="button"
+                class="app-header__mode"
+                :aria-pressed="currentColorMode === 'dark'"
+                @click="toggleColorMode"
+            >
+                {{ currentColorMode === "dark" ? "Ljust läge" : "Mörkt läge" }}
+            </button>
+        </header>
+
+        <main class="app-main" id="main-content">
+            <router-view />
+        </main>
+
+        <site-footer />
+    </div>
 </template>
+
+<style scoped lang="scss">
+// Shell layout: every value is a theme token (per the create-a-site guide's
+// dark-mode rule – no raw colors), so both color modes flip for free.
+.app-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 1rem 1.5rem;
+    background-color: var(--fkds-color-background-secondary, #f4f5f7);
+    border-bottom: 1px solid var(--fkds-color-border-weak, #d7d9e0);
+}
+
+.app-header__home {
+    font-weight: 600;
+    color: var(--fkds-color-text-primary, #1b1e23);
+    text-decoration: none;
+}
+
+.app-header__nav {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.app-header__link {
+    color: var(--fkds-color-text-action, #0053a7);
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+        color: var(--fkds-color-text-action-hover, #00418a);
+    }
+
+    &.router-link-active {
+        font-weight: 600;
+        text-decoration-thickness: 2px;
+    }
+}
+
+.app-header__mode {
+    margin-left: auto;
+}
+
+.app-main {
+    flex: 1;
+    width: 100%;
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+    box-sizing: border-box;
+}
+</style>

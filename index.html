@@ -5,6 +5,25 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>felix-ds-konsument</title>
+    <script>
+      // Applies the persisted color mode (or the system preference) before
+      // first paint to avoid a light flash when dark mode is active. Keep the
+      // storage key in sync with src/color-mode.ts.
+      (function () {
+        try {
+          var stored = localStorage.getItem("felix-consumer-color-mode");
+          var dark =
+            stored === "dark" ||
+            (stored === null &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          if (dark) {
+            document.documentElement.setAttribute("data-color-mode", "dark");
+          }
+        } catch (e) {
+          /* localStorage unavailable – stay light */
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="app"></div>
