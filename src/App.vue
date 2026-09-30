@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { routes } from "./routes";
-import { currentColorMode, toggleColorMode } from "./color-mode";
+import ColorModeToggle from "./components/ColorModeToggle.vue";
 import SiteFooter from "./components/SiteFooter.vue";
 </script>
 
@@ -18,14 +18,7 @@ import SiteFooter from "./components/SiteFooter.vue";
                     {{ route.title }}
                 </router-link>
             </nav>
-            <button
-                type="button"
-                class="app-header__mode"
-                :aria-pressed="currentColorMode === 'dark'"
-                @click="toggleColorMode"
-            >
-                {{ currentColorMode === "dark" ? "Ljust läge" : "Mörkt läge" }}
-            </button>
+            <color-mode-toggle class="app-header__mode" />
         </header>
 
         <main class="app-main" id="main-content">
