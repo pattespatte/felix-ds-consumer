@@ -1,5 +1,26 @@
-# Vue 3 + TypeScript + Vite
+# felix-ds-consumer
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A minimal consumer app for [@pattespatte/felix-ds](https://github.com/pattespatte/felix-ds) – a thin, organisation-neutral theme layer on top of FKUI's public npm packages. It exercises the package's consumption contract: validation forms, a data table, an expandable paragraph and a modal, in both light and dark color mode, using the theme's self-hosted fonts (Noto Sans for body text, Roboto Slab for headings).
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+Live at <https://pattespatte.github.io/felix-ds-consumer/>.
+
+## Run locally
+
+The `@pattespatte` scope is served by GitHub Packages, so installing requires a personal access token with `read:packages`. The tracked `.npmrc` reads it from `GH_TOKEN`:
+
+```bash
+export GH_TOKEN=<PAT with read:packages>
+bun install
+bun run dev
+```
+
+## Scripts
+
+| Command | What it does |
+| --- | --- |
+| `bun run dev` | Dev server |
+| `bun run build` | Typecheck + production build |
+| `bun run preview` | Serve the production build |
+| `bunx playwright test` | Axe scans (every page in both color modes) and font-loading checks |
+
+Deployments to GitHub Pages run through `.github/workflows/deploy.yml` on every push to `main`.
