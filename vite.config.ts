@@ -4,6 +4,9 @@ import { defineConfig } from "vite";
 
 // https://vite.dev/config/
 export default defineConfig({
+    // Relative base so the build works under the GitHub Pages project
+    // subdirectory (/felix-ds-consumer/); safe with the app's hash routing.
+    base: "./",
     plugins: [
         vue({
             template: {
