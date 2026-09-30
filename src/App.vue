@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { routes } from "./router";
+import { routes } from "./routes";
 import { currentColorMode, toggleColorMode } from "./color-mode";
 import SiteFooter from "./components/SiteFooter.vue";
 </script>
@@ -15,7 +15,7 @@ import SiteFooter from "./components/SiteFooter.vue";
                     class="app-header__link"
                     :to="{ name: route.name }"
                 >
-                    {{ route.meta.title }}
+                    {{ route.title }}
                 </router-link>
             </nav>
             <button
@@ -57,7 +57,6 @@ import SiteFooter from "./components/SiteFooter.vue";
 
 .app-header__home {
     font-weight: 600;
-    color: var(--fkds-color-text-primary, #1b1e23);
     text-decoration: none;
 }
 
@@ -67,14 +66,11 @@ import SiteFooter from "./components/SiteFooter.vue";
     flex-wrap: wrap;
 }
 
+// Link colors come from FKUI's stylesheet (token-mapped by the theme), which
+// flips correctly per color mode – setting our own would need a token that
+// exists in both mode palettes.
 .app-header__link {
-    color: var(--fkds-color-text-action, #0053a7);
     text-decoration: underline;
-
-    &:hover,
-    &:focus {
-        color: var(--fkds-color-text-action-hover, #00418a);
-    }
 
     &.router-link-active {
         font-weight: 600;

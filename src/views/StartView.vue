@@ -24,9 +24,5 @@
     li {
         margin-bottom: 0.5rem;
     }
-
-    a {
-        color: var(--fkds-color-text-action, #0053a7);
-    }
 }
 </style>
