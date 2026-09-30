@@ -16,13 +16,8 @@ const namn = ref("");
 const epost = ref("");
 const meddelande = ref("");
 const ort = ref("");
-const amnen = ref([] as string[]);
+const amnen = ref<string[]>([]);
 const kontaktuppgifter = ref({} as GroupValidityEvent);
-
-function skicka(): void {
-    // Skicklogiken är inte poängen här – valideringen är det.
-    namn.value = namn.value;
-}
 </script>
 
 <template>
@@ -53,7 +48,7 @@ function skicka(): void {
             </f-validation-group>
 
             <f-fieldset name="amnen">
-                <template #legend> Vill du ha information om </template>
+                <template #label> Vill du ha information om </template>
                 <f-checkbox-field v-model="amnen" value="tema"> Temautveckling </f-checkbox-field>
                 <f-checkbox-field v-model="amnen" value="utgivning"> Utgivning av versioner </f-checkbox-field>
             </f-fieldset>
@@ -62,7 +57,7 @@ function skicka(): void {
                 Meddelande
             </f-textarea-field>
 
-            <f-button type="submit" size="medium" variant="primary" @click="skicka">
+            <f-button type="submit" size="medium" variant="primary">
                 Skicka
             </f-button>
         </f-validation-form>
