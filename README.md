@@ -6,10 +6,10 @@ Live at <https://pattespatte.github.io/felix-ds-consumer/>.
 
 ## Run locally
 
-The `@pattespatte` scope is served by GitHub Packages, so installing requires a personal access token with `read:packages`. The tracked `.npmrc` reads it from `GH_TOKEN`:
+The `@pattespatte` scope is served by GitHub Packages, so installing requires a personal access token with `read:packages`. The tracked `.npmrc` reads it from `GITHUB_PACKAGES_TOKEN`:
 
 ```bash
-export GH_TOKEN=<PAT with read:packages>
+export GITHUB_PACKAGES_TOKEN=<PAT with read:packages>
 bun install
 bun run dev
 ```
