@@ -1,0 +1,15 @@
+/* App shell styles. The felix theme itself is consumed as prebuilt CSS from
+   @pattespatte/felix-ds/dist/felix.css (imported in main.ts) – no Sass
+   anywhere in this app. */
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Without a canvas background the browser default shows through wherever the
+   app shell does not paint; the token flips with the color mode. */
+body {
+    background-color: var(--fkds-color-background-primary, #ffffff);
+    color: var(--fkds-color-text-primary, #1b1e23);
+}
