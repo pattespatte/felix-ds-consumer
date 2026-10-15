@@ -12,7 +12,7 @@
     </section>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .start__intro {
     max-width: 46rem;
 }
@@ -20,9 +20,9 @@
 .start__list {
     max-width: 46rem;
     padding-left: 1.25rem;
+}
 
-    li {
-        margin-bottom: 0.5rem;
-    }
+.start__list li {
+    margin-bottom: 0.5rem;
 }
 </style>

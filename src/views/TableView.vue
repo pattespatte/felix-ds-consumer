@@ -44,7 +44,7 @@ const rows: UppgiftRow[] = [
     </section>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .tabeller__intro {
     max-width: 46rem;
 }

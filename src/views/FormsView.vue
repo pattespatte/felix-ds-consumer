@@ -68,7 +68,7 @@ const kontaktuppgifter = ref({} as GroupValidityEvent);
     </section>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .formular__intro {
     max-width: 46rem;
 }

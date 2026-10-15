@@ -46,7 +46,7 @@ const modalOppen = ref(false);
     </section>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .atkoppling__intro {
     max-width: 46rem;
 }

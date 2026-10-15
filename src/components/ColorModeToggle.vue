@@ -52,11 +52,11 @@ const label = computed(() =>
     </button>
 </template>
 
-<style scoped lang="scss">
-// Copied from the felix-ds playground's ColorModeToggle, with the icon color
-// token swapped: the playground pairs --fkds-color-header-text-primary with
-// the FKUI header background, while this app's header sits on
-// --fkds-color-background-secondary like the rest of the page text.
+<style scoped>
+/* Copied from the felix-ds playground's ColorModeToggle, with the icon color
+   token swapped: the playground pairs --fkds-color-header-text-primary with
+   the FKUI header background, while this app's header sits on
+   --fkds-color-background-secondary like the rest of the page text. */
 .color-mode-toggle {
     display: inline-flex;
     align-items: center;
@@ -71,8 +71,8 @@ const label = computed(() =>
     cursor: pointer;
 }
 
-// Dark translucent overlay instead of a theme token: keeps the icon readable
-// on the secondary background in both color modes (>= 4.5:1).
+/* Dark translucent overlay instead of a theme token: keeps the icon readable
+   on the secondary background in both color modes (>= 4.5:1). */
 .color-mode-toggle:hover {
     background: rgba(0, 0, 0, 0.2);
 }

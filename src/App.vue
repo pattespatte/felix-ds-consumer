@@ -29,9 +29,9 @@ import SiteFooter from "./components/SiteFooter.vue";
     </div>
 </template>
 
-<style scoped lang="scss">
-// Shell layout: every value is a theme token (per the create-a-site guide's
-// dark-mode rule – no raw colors), so both color modes flip for free.
+<style scoped>
+/* Shell layout: every value is a theme token (per the create-a-site guide's
+   dark-mode rule – no raw colors), so both color modes flip for free. */
 .app-shell {
     min-height: 100vh;
     display: flex;
@@ -59,16 +59,16 @@ import SiteFooter from "./components/SiteFooter.vue";
     flex-wrap: wrap;
 }
 
-// Link colors come from FKUI's stylesheet (token-mapped by the theme), which
-// flips correctly per color mode – setting our own would need a token that
-// exists in both mode palettes.
+/* Link colors come from FKUI's stylesheet (token-mapped by the theme), which
+   flips correctly per color mode – setting our own would need a token that
+   exists in both mode palettes. */
 .app-header__link {
     text-decoration: underline;
+}
 
-    &.router-link-active {
-        font-weight: 600;
-        text-decoration-thickness: 2px;
-    }
+.app-header__link.router-link-active {
+    font-weight: 600;
+    text-decoration-thickness: 2px;
 }
 
 .app-header__mode {
