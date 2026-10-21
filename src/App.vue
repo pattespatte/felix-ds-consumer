@@ -1,23 +1,43 @@
 <script setup lang="ts">
+import { computed, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { FNavigationMenu, type NavigationMenuItem } from "@fkui/vue";
 import { routes } from "./routes";
 import ColorModeToggle from "./components/ColorModeToggle.vue";
 import SiteFooter from "./components/SiteFooter.vue";
+
+// FNavigationMenu works with named routes: `route` = RouteRecord.name.
+const menuRoutes = computed<NavigationMenuItem[]>(() =>
+    routes.map((route) => ({ label: route.title, route: route.name })),
+);
+
+const router = useRouter();
+const route = useRoute();
+const currentRoute = ref<string>(String(route.name ?? ""));
+
+watch(
+    () => route.name,
+    (name) => {
+        currentRoute.value = String(name ?? "");
+    },
+);
+
+function onSelectedRoute(selected: string): void {
+    router.push({ name: selected });
+}
 </script>
 
 <template>
     <div class="app-shell">
         <header class="app-header">
             <a class="app-header__home" href="#/">felix-ds-konsument</a>
-            <nav aria-label="Huvudnavigation" class="app-header__nav">
-                <router-link
-                    v-for="route in routes"
-                    :key="route.name"
-                    class="app-header__link"
-                    :to="{ name: route.name }"
-                >
-                    {{ route.title }}
-                </router-link>
-            </nav>
+            <f-navigation-menu
+                v-model:route="currentRoute"
+                class="app-header__nav"
+                menu-aria-label="Huvudnavigation"
+                :routes="menuRoutes"
+                @selected-route="onSelectedRoute"
+            />
             <color-mode-toggle class="app-header__mode" />
         </header>
 
@@ -53,23 +73,8 @@ import SiteFooter from "./components/SiteFooter.vue";
     text-decoration: none;
 }
 
-.app-header__nav {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-/* Link colors come from FKUI's stylesheet (token-mapped by the theme), which
-   flips correctly per color mode – setting our own would need a token that
-   exists in both mode palettes. */
-.app-header__link {
-    text-decoration: underline;
-}
-
-.app-header__link.router-link-active {
-    font-weight: 600;
-    text-decoration-thickness: 2px;
-}
+/* Menu styling comes from FKUI's stylesheet (token-mapped by the theme), so
+   it flips correctly per color mode. */
 
 .app-header__mode {
     margin-left: auto;
