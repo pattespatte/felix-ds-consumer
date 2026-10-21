@@ -14,6 +14,18 @@ bun install
 bun run dev
 ```
 
+## Upgrade felix-ds
+
+The theme has no CLI – it is a plain CSS package – so upgrading is a dependency update. With `GITHUB_PACKAGES_TOKEN` exported as above:
+
+```bash
+bun update @pattespatte/felix-ds
+```
+
+This resolves the newest published version allowed by the range in `package.json`, rewrites that range to the new version and updates `bun.lockb`. The `@fkui/*` packages are pinned to exact versions and are not touched, as long as they stay inside the theme's peer range (`@fkui/theme-default >=6.57.0 <7.0.0`). Restart the dev server afterwards – Vite pre-bundles the old CSS – and run `bun run build` and `bunx playwright test` before committing.
+
+To see which version is installed, run `npm ls @pattespatte/felix-ds` (local lookup, no token needed). `npm view @pattespatte/felix-ds versions` lists every published version – it needs the token and must run from the repo root so `.npmrc` applies. To install a specific release instead of the newest one, `bun add @pattespatte/felix-ds@1.4.0` pins that exact version, while `bun add @pattespatte/felix-ds@latest` writes a fresh caret range – use it when a major release falls outside the current range, which `bun update` never crosses. The registry has no dist-tags other than `latest`.
+
 ## Scripts
 
 | Command | What it does |
